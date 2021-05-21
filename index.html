@@ -34,7 +34,7 @@
             let url = "https://developer.api.autodesk.com/authentication/v1/authorize?"
             url += appendParam("client_id", client_ID)
             url += appendParam("response_type", "code")
-            url += appendParam("redirect_uri", "https://hices.github.io/FusionResponse/")
+            url += appendParam("redirect_uri", "https://hices.github.io/SketchfabF360Resp/")
             url += appendParam("scope", "data:read")
             url = url.substring(0, url.length - 1)
             return url
