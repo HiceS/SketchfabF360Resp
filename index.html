@@ -19,27 +19,6 @@
             const queryString = window.location.search
             return queryString
         }
-
-        function getPath() {
-            const queryString = window.location.href
-            let file = queryString.substr(8)
-            file = "file://" + file
-            return file
-        }
-
-        function appendParam(param_name, param_value){
-            return param_name + "=" + param_value + "&"
-        }
-
-        function generateLoginURL(){
-            let url = "https://developer.api.autodesk.com/authentication/v1/authorize?"
-            url += appendParam("client_id", client_ID)
-            url += appendParam("response_type", "code")
-            url += appendParam("redirect_uri", "https://hices.github.io/SketchfabF360Resp/")
-            url += appendParam("scope", "data:read")
-            url = url.substring(0, url.length - 1)
-            return url
-        }
         
         function sendCode(){      
             if (getProps()){
