@@ -22,7 +22,8 @@
         
         function sendCode(){      
             if (getProps()){
-                const code = getProps().split('#')[1]
+                const code = getProps().split('#')[1];
+		console.log(code);
                 const args = {
                     code: code
                 };
