@@ -19,7 +19,7 @@
 		   		code: code
 			};
 			try{
-			    adsk.fusionSendData('send', JSON.stringify(args)); // Sleep for 3 seconds to allow Fusion to catch up.
+			    setTimeout(function(){ adsk.fusionSendData('send', JSON.stringify(args)); }, 1000);
 			}
 			catch (e) {
 			    setTimeout(function(){ adsk.fusionSendData('send', JSON.stringify(args)); }, 3000);
