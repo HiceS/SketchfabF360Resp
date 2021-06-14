@@ -20,25 +20,20 @@
             return queryString
         }
         
-        function sendCode(){      
-            if (getProps()){
-                const code = getProps().split('#')[1];
+        function sendCode(){
+		const code = getProps().split('#')[1];
 		console.log(code);
-                const args = {
-                    code: code
-                };
-                try{
-                    setTimeout(function(){ adsk.fusionSendData('send', JSON.stringify(args)); }, 3000); // Sleep for 3 seconds to allow Fusion to catch up.
-                }
-                catch (e) {
-                    // if there is a problem just wait another few seconds / alternatively just loop it and use a pass.
-                    setTimeout(function(){ adsk.fusionSendData('send', JSON.stringify(args)); }, 3000);
-                }
-            }else {
-                // document.getElementById("URL").innerHTML = getPath()
-                // const url = generateLoginURL()
-                // window.location.href = url;
-            }
+		const args = {
+		    code: code
+		};
+		try{
+		    setTimeout(function(){ adsk.fusionSendData('send', JSON.stringify(args)); }, 3000); // Sleep for 3 seconds to allow Fusion to catch up.
+		}
+		catch (e) {
+		    // if there is a problem just wait another few seconds / alternatively just loop it and use a pass.
+		    console.log(e);
+		    setTimeout(function(){ adsk.fusionSendData('send', JSON.stringify(args)); }, 3000);
+		}
         }
 
         window.fusionJavaScriptHandler = {handle: function(action, data){
