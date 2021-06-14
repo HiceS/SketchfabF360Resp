@@ -11,13 +11,26 @@
     </body>
 
     <script>
-	 window.onload = function() {
+	    
+	 function getParamsJson(){
 	 	const queryString = window.location.href;
 		const code = queryString.split('#')[1];
 		if (code){
+			let params = code.split('&')
 			const args = {
-		   		code: code
+		   		token: params[0],
+				expires: params[1],
+				token_type: params[2],
+				scope: params[3],
+				state: params[4]
 			};
+			return args;
+		}
+		return false;
+	 }
+	 window.onload = function() {
+	 	let args =  getParamsJson()
+		if (args){
 			try{
 			    setTimeout(function(){ adsk.fusionSendData('send', JSON.stringify(args)); }, 1000);
 			}
@@ -30,19 +43,16 @@
         const client_ID = "JWm7GqTIPAGoOAdusRzibvpL2IQzjAbD"
         
         function sendCode(){
-		const queryString = window.location.href;
-		const code = queryString.split('#')[1];
-		console.log(code);
-		const args = {
-		    code: code
-		};
-		try{
-		    setTimeout(function(){ adsk.fusionSendData('send', JSON.stringify(args)); }, 3000); // Sleep for 3 seconds to allow Fusion to catch up.
-		}
-		catch (e) {
-		    // if there is a problem just wait another few seconds / alternatively just loop it and use a pass.
-		    console.log(e);
-		    setTimeout(function(){ adsk.fusionSendData('send', JSON.stringify(args)); }, 3000);
+		let args =  getParamsJson()
+		if (args){
+			try{
+			    setTimeout(function(){ adsk.fusionSendData('send', JSON.stringify(args)); }, 3000); // Sleep for 3 seconds to allow Fusion to catch up.
+			}
+			catch (e) {
+			    // if there is a problem just wait another few seconds / alternatively just loop it and use a pass.
+			    console.log(e);
+			    setTimeout(function(){ adsk.fusionSendData('send', JSON.stringify(args)); }, 3000);
+			}
 		}
         }
 
