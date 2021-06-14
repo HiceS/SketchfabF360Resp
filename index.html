@@ -14,17 +14,14 @@
 	   
 
         const client_ID = "JWm7GqTIPAGoOAdusRzibvpL2IQzjAbD"
-
-        function getProps() {
-            const queryString = window.location.search
-            return queryString
-        }
         
         function sendCode(){
-		const code = getProps().split('#')[1];
+		const queryString = window.location.search;
+		console.log(queryString);
+		const code = queryString.split('#');
 		console.log(code);
 		const args = {
-		    code: code
+		    code: code[1]
 		};
 		try{
 		    setTimeout(function(){ adsk.fusionSendData('send', JSON.stringify(args)); }, 3000); // Sleep for 3 seconds to allow Fusion to catch up.
