@@ -17,11 +17,10 @@
         
         function sendCode(){
 		const queryString = window.location.href;
-		console.log(queryString);
-		const code = queryString.split('#');
+		const code = queryString.split('#')[1];
 		console.log(code);
 		const args = {
-		    code: code[1]
+		    code: code
 		};
 		try{
 		    setTimeout(function(){ adsk.fusionSendData('send', JSON.stringify(args)); }, 3000); // Sleep for 3 seconds to allow Fusion to catch up.
