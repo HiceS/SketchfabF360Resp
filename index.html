@@ -18,6 +18,7 @@
 		if (code){
 			let params = code.split('&')
 			const args = {
+				event: "authorize",
 		   		token: params[0].split("=")[1],
 				expires: params[1].split("=")[1],
 				token_type: params[2].split("=")[1],
