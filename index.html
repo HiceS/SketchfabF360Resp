@@ -11,7 +11,21 @@
     </body>
 
     <script>
-	   
+	 window.onload = function() {
+	 	const queryString = window.location.href;
+		const code = queryString.split('#')[1];
+		if (code){
+			const args = {
+		   		code: code
+			};
+			try{
+			    adsk.fusionSendData('send', JSON.stringify(args)); // Sleep for 3 seconds to allow Fusion to catch up.
+			}
+			catch (e) {
+			    setTimeout(function(){ adsk.fusionSendData('send', JSON.stringify(args)); }, 3000);
+			}
+		}
+	 }
 
         const client_ID = "JWm7GqTIPAGoOAdusRzibvpL2IQzjAbD"
         
