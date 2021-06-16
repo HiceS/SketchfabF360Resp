@@ -1,80 +1,13 @@
 <!DOCTYPE html>
 <html>
     <head>
+		<link rel="stylesheet" href="styles.css">
     </head>
 
-    <body id="body" onload="sendCode()">
-        <p id='p1'>This will auto send the data when finished authenticating.</p>
-        <h3 id="URL"></h3>
-        <button type='button' onclick='sendCode()'>Click to send info to Fusion</button> 
-        <br /><br />
+    <body id="body">
+
     </body>
 
-    <script>
-	    
-	 function getParamsJson(){
-	 	const queryString = window.location.href;
-		const code = queryString.split('#')[1];
-		if (code){
-			let params = code.split('&')
-			const args = {
-				event: "authorize",
-		   		token: params[0].split("=")[1],
-				expires: params[1].split("=")[1],
-				token_type: params[2].split("=")[1],
-				scope: params[3].split("=")[1],
-				state: params[4].split("=")[1]
-			};
-			return args;
-		}
-		return false;
-	 }
-	 window.onload = function() {
-	 	let args =  getParamsJson()
-		if (args){
-			try{
-			    setTimeout(function(){ adsk.fusionSendData('send', JSON.stringify(args)); }, 1000);
-			}
-			catch (e) {
-			    setTimeout(function(){ adsk.fusionSendData('send', JSON.stringify(args)); }, 3000);
-			}
-		}
-	 }
-
-        const client_ID = "JWm7GqTIPAGoOAdusRzibvpL2IQzjAbD"
-        
-        function sendCode(){
-		let args =  getParamsJson()
-		if (args){
-			try{
-			    setTimeout(function(){ adsk.fusionSendData('send', JSON.stringify(args)); }, 3000); // Sleep for 3 seconds to allow Fusion to catch up.
-			}
-			catch (e) {
-			    // if there is a problem just wait another few seconds / alternatively just loop it and use a pass.
-			    console.log(e);
-			    setTimeout(function(){ adsk.fusionSendData('send', JSON.stringify(args)); }, 3000);
-			}
-		}
-        }
-
-        window.fusionJavaScriptHandler = {handle: function(action, data){
-            try {
-                if (action == 'send') {
-				}
-				else if (action == 'debugger') {
-                    debugger;
-				}
-				else {
-					return 'Unexpected command type: ' + action;
-                }
-            } catch (e) {
-                console.log(e);
-                console.log('exception caught with command: ' + action + ', data: ' + data);
-            }
-            return 'OK';
-        }};
-
-
-    </script>
+    <script src="repeat.js"></script>
 
 </html>
