@@ -1,0 +1,27 @@
+:root {
+  font-size: 13px;
+}
+
+body {
+  font-size: 13px;
+  margin: 10px;
+  min-height: 90vh;
+
+}
+
+html {
+    display: block;
+    margin: auto;
+
+    overflow: hidden;
+
+    padding-bottom: 0;
+
+    height: 100%;
+    width: 100%;
+
+    background-color: #f8f8f2;
+    border-left: 1px solid #bdbdbd;
+    border-right: 1px solid #bdbdbd;
+    border-bottom: 1px solid #bdbdbd;
+}
