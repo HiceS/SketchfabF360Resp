@@ -26,6 +26,19 @@ function repeat(){
         catch (e) {
             setTimeout(function(){ adsk.fusionSendData('send', JSON.stringify(args)); }, 3000);
         }
+
+        messagebox = document.getElementById('message');
+        messagebox.innerHTML = "Successfully Logged In"
+
+        logo = document.getElementById('sfab-svg');
+        logo.classList.add('success');
+
+    }else {
+        messagebox = document.getElementById('message');
+        messagebox.innerHTML = "Not coming from SketchFab, Have you come here by mistake?";
+        
+        logo = document.getElementById('sfab-svg');
+        logo.classList.add('error');
     }
 }
 
